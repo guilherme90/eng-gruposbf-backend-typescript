@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "commonjs",
-    "moduleResolution": "Node",
-    "lib": ["es6"],
-    "allowJs": true,
-    "baseUrl": "./",
-    "outDir": "./dist",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "lib": ["ES6"],
+    "baseUrl": ".",
+    "outDir": "dist",
     "removeComments": true,
+    "sourceMap": false,
     "types": ["jest", "node"],
     "typeRoots": [
       "./node_modules/@types"
@@ -20,7 +20,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "src/**/*",

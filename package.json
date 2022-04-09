@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/guilherme90/eng-gruposbf-backend-typescript#readme",
   "scripts": {
-    "start:dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
-    "build": "tsc",
+    "start:dev": "ts-node-dev src/index.ts",
+    "build": "ts-node",
     "start:prod": "node dist/server.js",
     "prisma:migrate": "npx prisma migrate dev --name",
     "prisma:db": "npx prisma migrate reset --force --seed",

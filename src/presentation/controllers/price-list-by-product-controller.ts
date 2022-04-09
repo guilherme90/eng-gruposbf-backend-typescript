@@ -2,19 +2,22 @@ import { Controller } from '@/presentation'
 import { Response } from 'express'
 import { ProductUseCaseInterface } from '@/application/usecases'
 
-type PriceListByProductControllerRequest = {
-  id: number
+type PriceListByProductRequest = {
+  params: {
+    id: number
+  }
 }
 
-export class PriceListByProductController implements Controller<PriceListByProductControllerRequest, Response> {
+export class PriceListByProductController implements Controller<PriceListByProductRequest, Response> {
   private readonly useCase: ProductUseCaseInterface
   constructor (useCase: ProductUseCaseInterface) {
     this.useCase = useCase
   }
 
-  async handle (request: PriceListByProductControllerRequest, response: Response): Promise<Response> {
+  handle = async (request: PriceListByProductRequest, response: Response): Promise<Response> => {
     try {
-      const product = await this.useCase.findById(request.id)
+      const { id } = request.params
+      const product = await this.useCase.findById(Number(id))
       const prices = await this.useCase.showPrices(product)
 
       return response.status(200).json({

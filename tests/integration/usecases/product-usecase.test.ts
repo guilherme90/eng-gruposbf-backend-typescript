@@ -52,6 +52,4 @@ describe('ProductUseCase', () => {
       price_discount: product.price_discount
     })
   })
-
- 
 })
