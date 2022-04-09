@@ -1,1 +1,1 @@
-export * from './currency-list-controller-factory'
+export * from './price-list-by-product-controller-factory'

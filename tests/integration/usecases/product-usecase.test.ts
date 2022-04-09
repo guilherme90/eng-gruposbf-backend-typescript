@@ -1,7 +1,7 @@
 import { prisma } from '@/infrastructure/config'
 import { ProductUseCaseInterface } from '@/application/usecases'
 import { ProductUseCase } from '@/domain/usecases'
-import { makeProductRepositoryFactory } from '@/main/factories'
+import { makeCoinRepositoryFactory, makeProductRepositoryFactory } from '@/main/factories'
 import { Product } from '@/domain/entities/product'
 
 describe('ProductUseCase', () => {
@@ -9,7 +9,7 @@ describe('ProductUseCase', () => {
   let useCase: ProductUseCaseInterface
 
   beforeAll(() => {
-    useCase = new ProductUseCase(makeProductRepositoryFactory())
+    useCase = new ProductUseCase(makeProductRepositoryFactory(), makeCoinRepositoryFactory())
   })
 
   beforeEach(async () => {
@@ -52,4 +52,6 @@ describe('ProductUseCase', () => {
       price_discount: product.price_discount
     })
   })
+
+ 
 })

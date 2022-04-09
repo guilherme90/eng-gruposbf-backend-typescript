@@ -3,3 +3,9 @@ export type Coin = {
   name: string
   code: string
 }
+
+export type CurrencyPrice = {
+  name: string
+  code: string
+  value: number
+}

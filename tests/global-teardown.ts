@@ -1,6 +1,10 @@
 import { prisma } from '@/infrastructure/config'
 
 export default async () => {
+  if (process.env.TEST === 'unit') {
+    return
+  }
+
   console.log('\n Global teardown...')
-  prisma.$disconnect()
+  await prisma.$disconnect()
 }

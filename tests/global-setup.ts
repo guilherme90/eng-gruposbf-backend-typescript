@@ -5,6 +5,10 @@ import { exec } from 'child_process'
 dotenv.config({ path: '.env.test' })
 
 export default async () => {
+  if (process.env.TEST === 'unit') {
+    return
+  }
+
   console.log('\nRUNNING global setup...\n')
 
   await exec(

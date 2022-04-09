@@ -22,7 +22,7 @@ export default async() => {
     code: 'CHF'
   }, {
     name: 'Renminbi (Yuan)',
-    code: 'CNY '
+    code: 'CNY'
   }, {
     name: 'Peso Argentino',
     code: 'ARS'
@@ -31,7 +31,7 @@ export default async() => {
     code: 'TRY'
   }, {
     name: 'Rupia indiana',
-    code: 'INN'
+    code: 'INR'
   }]
 
   await prisma.coin.createMany({

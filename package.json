@@ -24,8 +24,9 @@
     "prisma:migrate": "npx prisma migrate dev --name",
     "prisma:db": "npx prisma migrate reset --force --seed",
     "prisma:seed": "npx prisma db seed",
-    "test:integration": "jest `--detectOpenHandles --testPathPattern=tests/integration",
-    "test:e2e": "npm run pretest && jest --testPathPattern=tests/e2e",
+    "test:unit": "cross-env TEST=unit && jest --testPathPattern=tests/unit",
+    "test:integration": "cross-env TEST=integration && jest `--detectOpenHandles --testPathPattern=tests/integration",
+    "test:e2e": "cross-env TEST=e2e && npm run pretest && jest --testPathPattern=tests/e2e",
     "test": "jest"
   },
   "devDependencies": {

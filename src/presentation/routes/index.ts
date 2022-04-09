@@ -1,9 +1,9 @@
 import { IRouter } from 'express'
 
-import { makeCurrencyListControllerFactory } from '@/main/factories/controllers'
+import { makePriceListByProductControllerFactory } from '@/main/factories/controllers'
 
 export const routes = (router: IRouter): IRouter => {
-  router.get('/currencies', makeCurrencyListControllerFactory().handle)
+  router.get('/product/:id/prices', makePriceListByProductControllerFactory().handle)
 
   return router
 }
