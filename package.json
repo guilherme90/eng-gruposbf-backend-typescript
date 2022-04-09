@@ -1,0 +1,73 @@
+{
+  "name": "eng-gruposbf-backend-typescript",
+  "version": "1.0.0",
+  "description": "Grupo SBF - Conversor de moedas",
+  "main": "src/index.ts",
+  "engines": {
+    "node": "17.x",
+    "npm": "8.5.*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilherme90/eng-gruposbf-backend-typescript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guilherme90/eng-gruposbf-backend-typescript/issues"
+  },
+  "homepage": "https://github.com/guilherme90/eng-gruposbf-backend-typescript#readme",
+  "scripts": {
+    "start:dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
+    "build": "tsc",
+    "start:prod": "node dist/server.js",
+    "prisma:migrate": "npx prisma migrate dev --name",
+    "prisma:db": "npx prisma migrate reset --force --seed",
+    "prisma:seed": "npx prisma db seed",
+    "test:integration": "jest `--detectOpenHandles --testPathPattern=tests/integration",
+    "test:e2e": "npm run pretest && jest --testPathPattern=tests/e2e",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@types/bcrypt": "^5.0.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^26.0.20",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "babel-jest": "^27.5.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.21.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "jest": "^27.5.1",
+    "supertest": "^6.1.6",
+    "ts-node-dev": "^1.1.6"
+  },
+  "dependencies": {
+    "@babel/preset-typescript": "^7.16.7",
+    "@prisma/client": "latest",
+    "axios": "^0.26.1",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
+    "module-alias": "^2.2.2",
+    "module-alias-jest": "^0.0.3",
+    "prisma": "^3.6.0",
+    "typescript": "^4.6.2"
+  },
+  "_moduleAliases": {
+    "@": "src/"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}
