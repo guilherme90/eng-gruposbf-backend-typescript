@@ -1,3 +1,5 @@
+import { Coin } from '@/domain/entities'
+
 export interface CoinRepositoryInterface {
-  findAll(): Promise<string[]>
+  findAll(): Promise<Coin[]>
 }

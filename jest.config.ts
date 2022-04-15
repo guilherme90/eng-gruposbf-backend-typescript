@@ -6,6 +6,7 @@
 export default {
   // Automatically clear mock calls, instances and results before every tests
   clearMocks: true,
+	setupFiles: ['./tests/env-setup.ts'],
   // A path to a module which exports an async function that is triggered once before all tests suites
   globalSetup: './tests/global-setup.ts',
 
@@ -56,7 +57,7 @@ export default {
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   transform: {
-    '^.+\\.(ts)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.(ts)$': '<rootDir>/node_modules/babel-jest'
   },
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them

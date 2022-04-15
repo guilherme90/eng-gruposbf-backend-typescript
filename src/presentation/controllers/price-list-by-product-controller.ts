@@ -28,8 +28,7 @@ export class PriceListByProductController implements Controller<PriceListByProdu
       })
     } catch (e) {
       return response.status(e.code ?? 500).json({
-        message: e.message ?? 'Internal server error',
-        e
+        message: e.message ?? 'Internal server error'
       })
     }
   }
