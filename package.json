@@ -22,9 +22,10 @@
     "prisma:reset": "npx prisma migrate reset --force",
     "prisma:reset-unseed": "npx prisma migrate reset --force --skip-seed",
     "test:unit": "cross-env TEST=unit && jest --testPathPattern=tests/unit",
-    "test:integration": "cross-env TEST=integration && jest --detectOpenHandles --testPathPattern=tests/integration",
+	"pretest": "npx prisma migrate reset --force --skip-seed",
+	"test:integration": "cross-env TEST=integration && jest --detectOpenHandles --testPathPattern=tests/integration",
     "test:e2e": "cross-env TEST=e2e && jest --detectOpenHandles --testPathPattern=tests/e2e",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.17.0",

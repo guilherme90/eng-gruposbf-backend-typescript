@@ -6,9 +6,9 @@ import { Product } from '@/domain/entities/product'
 import { Coin, CurrencyPrice } from '@/domain/entities'
 
 describe('ProductUseCase', () => {
-  let product: Product
+	let product: Product
 	let coins: Coin[]
-  let useCase: ProductUseCaseInterface
+	let useCase: ProductUseCaseInterface
 	const coinsToCalculateMock = {
 		'BRLUSD': {
 			code: 'BRL',
@@ -51,8 +51,8 @@ describe('ProductUseCase', () => {
 		}
 	}
 
-  beforeAll(async () => {
-    useCase = new ProductUseCase(makeProductRepositoryFactory(), makeCoinRepositoryFactory())
+	beforeAll(async () => {
+		useCase = new ProductUseCase(makeProductRepositoryFactory(), makeCoinRepositoryFactory())
 
 		// @ts-ignore
 		product = await prisma.product.create({
@@ -82,33 +82,33 @@ describe('ProductUseCase', () => {
 		})
 
 		coins = await prisma.coin.findMany({})
-  })
+	})
 
-  afterAll(async () => {
-    await prisma.product.delete({ where: { id: product.id } })
+	afterAll(async () => {
+		await prisma.product.delete({ where: { id: product.id } })
 		await prisma.coin.deleteMany({})
-    useCase = null
-  })
+		useCase = null
+	})
 
-  it('#findById - Throw exception when product not found', async () => {
-    try {
-      await useCase.findById(0)
-    } catch (e) {
-      expect(e.code).toEqual(404)
-    }
-  })
+	it('#findById - Throw exception when product not found', async () => {
+		try {
+			await useCase.findById(0)
+		} catch (e) {
+			expect(e.code).toEqual(404)
+		}
+	})
 
-  it('#findById', async () => {
-    const payload = await useCase.findById(product.id)
+	it('#findById', async () => {
+		const payload = await useCase.findById(product.id)
 
-    expect(payload).toMatchObject({
-      id: product.id,
-      name: product.name,
-      brand: product.brand,
-      price_bid: product.price_bid,
-      price_discount: product.price_discount
-    })
-  })
+		expect(payload).toMatchObject({
+			id: product.id,
+			name: product.name,
+			brand: product.brand,
+			price_bid: product.price_bid,
+			price_discount: product.price_discount
+		})
+	})
 
 	it('#calculatePrices', async () => {
 		const coinsToCalculate = Object.keys(coinsToCalculateMock).map((item) => coinsToCalculateMock[item])
@@ -130,6 +130,27 @@ describe('ProductUseCase', () => {
 					name: 'Real Brasileiro/Libra Esterlina',
 					code: 'GBP',
 					value: 30.93
+				}
+			])
+		)
+	})
+
+	it('#showPrices', async () => {
+		const prices = await useCase.showPrices(product)
+		expect(prices).toEqual(
+			expect.arrayContaining([
+				{
+					code: 'USD',
+					name: 'Real Brasileiro/Dólar Americano',
+					value: 40.43
+				}, {
+					code: 'GBP',
+					name: 'Real Brasileiro/Libra Esterlina',
+					value: 30.93
+				}, {
+					code: 'ARS',
+					name: 'Real Brasileiro/Peso Argentino',
+					value: 4563.47
 				}
 			])
 		)

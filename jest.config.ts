@@ -6,7 +6,7 @@
 export default {
   // Automatically clear mock calls, instances and results before every tests
   clearMocks: true,
-	setupFiles: ['./tests/env-setup.ts'],
+
   // A path to a module which exports an async function that is triggered once before all tests suites
   globalSetup: './tests/global-setup.ts',
 

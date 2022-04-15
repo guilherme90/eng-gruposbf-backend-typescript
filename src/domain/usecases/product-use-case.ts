@@ -3,6 +3,7 @@ import { NotFound, BadRequest } from '@/application/errors'
 import { ProductUseCaseInterface } from '@/application/usecases'
 import { CoinRepositoryInterface, ProductRepositoryInterface } from '@/application/repositories'
 import { awesomeRequest, CurrencyQuote } from '@/main/http/awesome/list-coins'
+import { awesomeUrlFormatter } from '@/utils'
 
 export class ProductUseCase implements ProductUseCaseInterface {
   constructor (
@@ -23,27 +24,23 @@ export class ProductUseCase implements ProductUseCaseInterface {
 	async calculatePrices(coins: Coin[], product: Product, coinsToCalculate: CurrencyQuote[]): Promise<CurrencyPrice[]> {
 		const prices: CurrencyPrice[] = []
 		await Promise.all(coins.map(async (coin) => {
-			coinsToCalculate.forEach((item) => {
-				prices.push({
-					name: item.name,
-					code: item.codein,
-					value: parseFloat((item.bid * product.price_discount).toFixed(2))
-				})
+			const currentCoin: any = coinsToCalculate.filter((item) => item.codein === coin.code)[0]
+			prices.push({
+				name: currentCoin.name,
+				code: currentCoin.codein,
+				value: parseFloat((currentCoin.bid * product.price_discount).toFixed(2))
 			})
 		}))
 		return Promise.resolve(prices)
 	}
 
-	async showPrices(product: Product): Promise<CurrencyPrice[]> {
+	async showPrices(product: Product): Promise<CurrencyPrice[] | any> {
     const coins = await this.coinRepository.findAll()
     if (!coins.length) {
       throw new BadRequest('Empty coins list')
     }
 
-		const map: CurrencyQuote[][] = await Promise.all(coins.map(async coin => {
-			return await awesomeRequest(`BRL-${coin.code}`)
-		}))
-
-    return this.calculatePrices(coins, product, map[0])
+		const coinsToCalculate: CurrencyQuote[] = await awesomeRequest(awesomeUrlFormatter(coins))
+    return this.calculatePrices(coins, product, coinsToCalculate)
   }
 }

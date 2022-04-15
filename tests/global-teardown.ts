@@ -5,7 +5,8 @@ export default async () => {
     return
   }
 
-  console.log('\n Global teardown...')
-  await prisma.$disconnect()
+	console.info(`\nStarting global teardown\n`)
+	await prisma.$disconnect()
 	process.exit()
+	console.info(`\nGlobal teardown finished!\n`)
 }
