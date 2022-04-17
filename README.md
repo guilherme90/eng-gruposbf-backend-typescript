@@ -7,7 +7,12 @@
 - Express
 - Jest
 
-### Runing tests
+### Running project
+```shell
+$ docker-compose up -d
+```
+
+### Running tests
 ```shell
 $ npm run test
 ```
