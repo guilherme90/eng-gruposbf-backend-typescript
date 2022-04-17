@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es2020",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "lib": ["ES6"],
-    "baseUrl": ".",
-    "outDir": "dist",
+    "baseUrl": "./",
+    "outDir": "./dist",
     "removeComments": true,
     "sourceMap": false,
     "types": ["jest", "node"],
@@ -13,7 +12,7 @@
       "./node_modules/@types"
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -23,9 +22,11 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/**/*",
-    "tests/**/*",
-    "prisma/**/*.ts",
-    "@types/jest"
+    "./src/**/*",
+    "./tests/**/*",
+	"./prisma/**/*.*"
+  ],
+  "exclude": [
+	"./dist/*"
   ]
 }
